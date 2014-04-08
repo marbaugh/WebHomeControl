@@ -1,3 +1,5 @@
+function doorSensorSub()
+{
 var zeromq = require('zmq');
  
 var sock = zeromq.socket('sub');
@@ -7,3 +9,4 @@ sock.subscribe('door');
 sock.on('message', function(data) {
    console.log(data.toString());
 });
+}
