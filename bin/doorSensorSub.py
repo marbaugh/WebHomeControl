@@ -1,4 +1,3 @@
-
 import sys
 import time
 import zmq
@@ -11,7 +10,7 @@ socket = context.socket(zmq.SUB)
 def sub_door_sensor_status():
 print "Collecting updates from weather server..."
 socket.connect ("tcp://localhost:%s" % port)
-topicfilter = "10001"
+topicfilter = "door"
 while True:
 socket.setsockopt(zmq.SUBSCRIBE, topicfilter)
 string = socket.recv()
