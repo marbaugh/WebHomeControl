@@ -10,8 +10,8 @@ context = zmq.Context()
 socket = context.socket(zmq.SUB)
 
 def sub_door_sensor_status():
-	print "Checking status of door"
-	socket.connect ("tcp://localhost:%s" % port)
+	print "Listening for status of door sensor"
+	socket.connect ("tcp://localhost:{0}".format(port))
 	topicfilter = "door"
 	while True:
 		socket.setsockopt(zmq.SUBSCRIBE, topicfilter)
