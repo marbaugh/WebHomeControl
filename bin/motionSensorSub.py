@@ -10,8 +10,8 @@ context = zmq.Context()
 socket = context.socket(zmq.SUB)
 
 def sub_motion_sensor_status():
-	print "Checking status of motion sensor"
-	socket.connect ("tcp://localhost:%s" % port)
+	print "Listening for status of motion sensor"
+	socket.connect ("tcp://localhost:{0}".format(port))
 	topicfilter = "motion"
 	while True:
 		socket.setsockopt(zmq.SUBSCRIBE, topicfilter)
