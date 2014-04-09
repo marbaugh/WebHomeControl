@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 import time
 import zmq
@@ -8,7 +10,7 @@ context = zmq.Context()
 socket = context.socket(zmq.SUB)
 
 def sub_door_sensor_status():
-	print "Collecting updates from weather server..."
+	print "Checking status of door"
 	socket.connect ("tcp://localhost:%s" % port)
 	topicfilter = "door"
 	while True:
@@ -18,4 +20,4 @@ def sub_door_sensor_status():
 		print topic, messagedata
 
 if __name__ == "__main__":
-	sub_motion_sensor_status()
+	sub_door_sensor_status()

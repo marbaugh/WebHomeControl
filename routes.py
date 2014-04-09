@@ -7,4 +7,4 @@ def home():
   return render_template('home.html')
  
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(host='192.168.3.107', debug=True)
