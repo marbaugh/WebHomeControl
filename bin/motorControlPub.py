@@ -9,8 +9,8 @@ def pub_motor_control():
     topic = "motor"
     context = zmq.Context()
     socket = context.socket(zmq.PUB)
-    socket.bind("tcp://*:%s" % port)
-	#while True:
+    socket.bind("tcp://*:{0}".format(port))
+    #while True:
     messagedata = 'forward'
     print "{0} {1}".format(topic, messagedata)
     socket.send("{0} {1}".format(topic, messagedata))
