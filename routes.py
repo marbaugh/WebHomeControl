@@ -35,22 +35,22 @@ class MotorStatus(Status):
 # The default route for the app
 @app.route('/')
 def home():
-  return render_template('home.html')
+    return render_template('home.html')
 
 # This view method responds to the URL /motionStatus
-@app.route('/motionStatus', methods=['GET', 'POST'])
+@app.route('/motionStatus')
 def motion():
-	pass
+    return render_template('motionStatus.html')
 
 # This view method responds to the URL /doorStatus
-@app.route('/doorStatus', methods=['GET', 'POST'])
+@app.route('/doorStatus')
 def door():
-	pass
+    return render_template('doorStatus.html')
 
 # This view method responds to the URL /motorStatus
-@app.route('/motorStatus', methods=['GET', 'POST'])
+@app.route('/motorStatus')
 def motor():
-	pass
+    return render_template('motorStatus.html')
 
 if __name__ == '__main__':
   app.run(host='192.168.3.107', debug=True)
