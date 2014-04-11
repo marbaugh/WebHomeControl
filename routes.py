@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__) 
 app.config.from_pyfile('webHomeControl.cfg')
+# set the secret key.  keep this really secret:
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 db = SQLAlchemy(app)
 
 class Status(db.Model):
@@ -40,6 +42,14 @@ def home():
 # This view method responds to the URL /motionStatus
 @app.route('/motionStatus')
 def motion():
+    insert_motion = MotionStatus(datetime.now(), 'I See Motion')
+    db.session.add(insert_motion)
+    db.session.commit()
+    flash('Comment was successfully submitted')
+
+    get_motion = MotionStatus.query.all()
+    for i in get_motion:
+        print i.time
     return render_template('motionStatus.html')
 
 # This view method responds to the URL /doorStatus
