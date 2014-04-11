@@ -11,7 +11,7 @@ def pub_motor_control():
     socket = context.socket(zmq.PUB)
     socket.bind("tcp://*:{0}".format(port))
     # Allow clients to connect before sending data
-    sleep(10)
+    time.sleep(10)
     while True:
         messagedata = 'forward'
         print "{0} {1}".format(topic, messagedata)
