@@ -4,6 +4,8 @@
     <h2>Welcome to the Pi Home Control App<h2>
   </div>
   <div>
-    <button type="button" onclick="motorPub()">Spin Motor</button>
+  	<h3>Get Motion Status<a href="{{ url_for('motionStatus') }}"></a)</h3>
+  	<h3>Get Door Status<a href="{{ url_for('doorStatus') }}"></a)</h3>
+  	<h3>Get Motor Status<a href="{{ url_for('motorStatus') }}"></a)</h3>
   </div>
 {% endblock %}
