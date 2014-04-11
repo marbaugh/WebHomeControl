@@ -3,21 +3,21 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__) 
-app.config.from_pyfile('hello.cfg')
+app.config.from_pyfile('webHomeControl.cfg')
 db = SQLAlchemy(app)
 
-class Status(db.model):
+class Status(db.Model):
 	# Setting the table name and
 	# creating columns for various fields
-	__tablename__ = 'status'
-	id = db.Column(db.Integer, primary_key = True)
-	time=db.Column(db.DateTime, index = True, unique = False)
+    __tablename__ = 'status'
+    id = db.Column(db.Integer, primary_key = True)
+    time=db.Column(db.DateTime, index = True, unique = False)
     status=db.Column(db.String, index = True, unique = False)
-
-	def __init__(self, time, status):
-		# Initializes the fields with entered data
-      	self.time = datetime.now()
-      	self.status = status
+    
+    def __init__(self, time, status):
+        # Initializes the fields with entered data
+        self.time = datetime.now()
+        self.status = status
 
 class DoorStatus(Status):
     pass
@@ -37,20 +37,19 @@ class MotorStatus(Status):
 def home():
   return render_template('home.html')
 
-
 # This view method responds to the URL /motionStatus
 @app.route('/motionStatus', methods=['GET', 'POST'])
-def new():
+def motion():
 	pass
 
 # This view method responds to the URL /doorStatus
 @app.route('/doorStatus', methods=['GET', 'POST'])
-def new():
+def door():
 	pass
 
 # This view method responds to the URL /motorStatus
 @app.route('/motorStatus', methods=['GET', 'POST'])
-def new():
+def motor():
 	pass
 
 if __name__ == '__main__':
