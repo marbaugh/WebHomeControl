@@ -39,6 +39,20 @@ class MotorStatus(Status):
 def home():
     return render_template('home.html')
 
+@app.route('/doorSensor/status/<status>', methods = ['POST'])
+def updateStatus(status):
+    if request.method == 'POST':
+        insert_door
+        if status == 'opened':
+            insert_door = DoorStatus(datetime.now(), status)
+        elif status == 'closed':
+            insert_door = DoorStatus(datetime.now(), status)
+        else:
+            pass
+    db.session.add(insert_door)
+    db.session.commit()
+    flash('Door Status was successfully inserted')
+
 # This view method responds to the URL /motionStatus
 @app.route('/motionStatus')
 def motion():
