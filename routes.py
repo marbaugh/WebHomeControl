@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -42,7 +42,7 @@ def home():
 @app.route('/doorSensor/status/<status>', methods = ['POST'])
 def updateStatus(status):
     if request.method == 'POST':
-        insert_door
+        insert_door = None
         if status == 'opened':
             insert_door = DoorStatus(datetime.now(), status)
         elif status == 'closed':
