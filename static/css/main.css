@@ -62,3 +62,11 @@ h3 {
   letter-spacing: -1px;
   color: #999;
 }
+
+.statusBox{
+  border:2px solid #a1a1a1;
+  padding:10px 40px; 
+  background:#dddddd;
+  width:300px;
+  border-radius:25px;
+}
