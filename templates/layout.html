@@ -4,13 +4,24 @@
     <title>Pi Home Control</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+    <script 
+      type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.js') }}">
+    </script>   
+    <script 
+      type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}">
+    </script>   
+    <script>
+      $(document).ready( function () {
+        $('#motionSensor').dataTable();
+      } );
+    </script>
+    <script>
+      $(document).ready( function () {
+        $('#doorSensor').dataTable();
+      } );
+    </script>
   </head>
-  <script 
-    type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.js') }}">
-  </script>   
-  <script 
-    type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}">
-  </script>   
+
   <body>
    
     <header>
