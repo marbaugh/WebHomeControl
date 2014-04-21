@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request
+from flask import Flask, render_template, flash, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -63,6 +63,10 @@ def doorStatus(status):
     db.session.commit()
     return 'success' 
 
+@app.route('/doorSensor/history/<int:history=1>')
+def doorSensor_history(history):
+	return jsonify(DoorStatus.query.order_by(DoorStatus.time).limit(history))
+
 @app.route('/motionSensor/status/<status>', methods = ['POST'])
 def motionStatus(status):
     if request.method == 'POST':
@@ -74,6 +78,10 @@ def motionStatus(status):
     db.session.add(insert_motion)
     db.session.commit()
     return 'success' 
+
+@app.route('/motionSensor/history/<int:history=1>')
+def motionSensor_history(history):
+	return jsonify(MotionStatus.query.order_by(MotionStatus.time).limit(history))
 
 if __name__ == '__main__':
   app.run(host='192.168.3.107', debug=True)
