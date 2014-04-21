@@ -63,8 +63,8 @@ def doorStatus(status):
     db.session.commit()
     return 'success' 
 
-@app.route('/doorSensor/history/<int:history=1>')
-def doorSensor_history(history):
+@app.route('/doorSensor/history/<int:history>')
+def doorSensor_history(history=1):
 	return jsonify(DoorStatus.query.order_by(DoorStatus.time).limit(history))
 
 @app.route('/motionSensor/status/<status>', methods = ['POST'])
@@ -79,8 +79,8 @@ def motionStatus(status):
     db.session.commit()
     return 'success' 
 
-@app.route('/motionSensor/history/<int:history=1>')
-def motionSensor_history(history):
+@app.route('/motionSensor/history/<int:history>')
+def motionSensor_history(history=1):
 	return jsonify(MotionStatus.query.order_by(MotionStatus.time).limit(history))
 
 if __name__ == '__main__':
