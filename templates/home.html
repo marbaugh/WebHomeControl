@@ -8,7 +8,7 @@
   <div class="statusBox">
     <fieldset>
       <legend>Door Sensor</legend>
-      <input type="submit" name="submit" value="Get Door Status">
+      <input id="doorHistory" type="button" value="doorHistory" onclick="getDoorHistory();" />
       <table> 
         <tr>
           <td>Latest Status:</td>
@@ -21,7 +21,7 @@
   <div class="statusBox">
     <fieldset>
       <legend>Motion Sensor</legend>
-      <input type="submit" name="submit" value="Get Motion Sensor Status">
+      <input id="motionHistory" type="button" value="motionHistory" onclick="getMotionHistory();" />
       <table> 
         <tr>
           <td>Last Motion Sensed:</td>
