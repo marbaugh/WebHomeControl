@@ -12,12 +12,22 @@
     </script>   
     <script type="text/javascript">
       $(document).ready( function () {
-        $('#motionSensor').dataTable();
-      } );
-    </script>
-    <script type="text/javascript">
-      $(document).ready( function () {
-        $('#doorSensor').dataTable();
+        var oTable = $('#motionSensor').dataTable( {
+            "bProcessing": true,
+            "sAjaxSource": "{{ url_for('motionSensor_history') }}",
+            "bSort": false,
+            "fnDrawCallback": function() {
+                   //some click events initilized here
+             }
+        });
+        var oTable = $('#doorSensor').dataTable( {
+            "bProcessing": true,
+            "sAjaxSource": "{{ url_for('doorSensor_history') }}",
+            "bSort": false,
+            "fnDrawCallback": function() {
+                   //some click events initilized here
+             }
+        });
       } );
     </script>
   </head>
