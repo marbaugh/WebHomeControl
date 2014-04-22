@@ -12,7 +12,7 @@
     </script>   
     <script type="text/javascript">
       $(document).ready( function () {
-        var oTable = $('#motionSensor').dataTable( {
+        var motionTable = $('#motionSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('motionSensor_history') }}",
             "bSort": false,
@@ -21,7 +21,7 @@
              }
         });
 
-        var oTable = $('#doorSensor').dataTable( {
+        var doorTable = $('#doorSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('doorSensor_history') }}",
             "bSort": false,
@@ -29,15 +29,7 @@
                    //some click events initilized here
              }
         });
-
-        $("#doorHistory").click(function(){ 
-          oTable.fnReloadAjax("{{ url_for('doorSensor_history') }}");
-        });
-
-        $("#motionHistory").click(function(){ 
-          oTable.fnReloadAjax("{{ url_for('motionSensor_history') }}");
-        });
-
+        
       } );
     </script>
   </head>
