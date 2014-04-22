@@ -63,10 +63,6 @@ def doorStatus(status):
     db.session.commit()
     return 'success' 
 
-@app.route('/doorSensor/history')
-def doorSensor_history():
-	return jsonify(DoorStatus.query.order_by(DoorStatus.time)
-
 @app.route('/motionSensor/status/<status>', methods = ['POST'])
 def motionStatus(status):
     if request.method == 'POST':
@@ -79,9 +75,25 @@ def motionStatus(status):
     db.session.commit()
     return 'success' 
 
-@app.route()
-def motionSensor_history(history=1):
-	return jsonify(MotionStatus.query.order_by(MotionStatus.time)
+@app.route('/doorSensor/history')
+def doorSensor_history():
+    aadata = dict()
+    rowData= list()
+    results = DoorStatus.query.order_by(DoorStatus.time).all()
+    for row in results:
+        rowData.append([row.time, row.status])
+	aadata['aaData'] = rowData
+    return jsonify(aadata)
+
+@app.route('/motionSensor/history')
+def motionSensor_history():
+    aadata = dict()
+    rowData= list()
+    results = MotionStatus.query.order_by(MotionStatus.time).all()
+    for row in results:
+        rowData.append([row.time, row.status])
+	aadata['aaData'] = rowData
+    return jsonify(aadata)
 
 if __name__ == '__main__':
   app.run(host='192.168.3.107', debug=True)
