@@ -64,11 +64,10 @@ h3 {
 }
 
 .statusBox{
-  width:800px;
+  width:90%;
   margin:0 auto;
   border:2px solid #a1a1a1;
   padding:10px 40px; 
   background:#dddddd;
-  width:300px;
   border-radius:25px;
 }
