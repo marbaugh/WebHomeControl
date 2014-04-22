@@ -11,30 +11,50 @@
       type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}">
     </script>   
     <script type="text/javascript">
-      $(document).ready( function () {
-        var motionTable = $('#motionSensor').dataTable( {
+        function InitOverviewDataTable() {
+          motionTable = $('#motionSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('motionSensor_history') }}",
-            "bSort": false,
-            "fnDrawCallback": function() {
-                   //some click events initilized here
-             }
-        });
+            "bSort": false
+            });
 
-        var doorTable = $('#doorSensor').dataTable( {
+          doorTable = $('#doorSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('doorSensor_history') }}",
-            "bSort": false,
-            "fnDrawCallback": function() {
-                   //some click events initilized here
-             }
+            "bSort": false
+            });
+        }
+
+        function RefreshTable(tableId, urlData)
+        {
+          $.getJSON(urlData, null, function( json )
+          {
+            table = $(tableId).dataTable();
+            oSettings = table.fnSettings();
+            
+            table.fnClearTable(this);
+
+            for (var i=0; i<json.aaData.length; i++)
+            {
+              table.oApi._fnAddData(oSettings, json.aaData[i]);
+            }
+
+            oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+            table.fnDraw();
+          });
+        }
+
+        function AutoReload()
+        {
+          RefreshTable('#motionSensor', '{{ url_for('motionSensor_history') }}');
+          RefreshTable('#doorSensor', '{{ url_for('doorSensor_history') }}');
+          setTimeout(function(){AutoReload();}, 60000);
+        }
+
+        $(document).ready(function () {
+          InitOverviewDataTable();
+          setTimeout(function(){AutoReload();}, 60000);
         });
-        
-        setInterval( function () {
-          motionTable.fnReloadAjax();
-        }, 10 * 1000 );
-        
-      } );
     </script>
   </head>
 
