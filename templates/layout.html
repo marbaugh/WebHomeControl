@@ -51,6 +51,25 @@
           setTimeout(function(){AutoReload();}, 60000);
         }
 
+        function motorForward()
+        {
+            $.ajax({
+              type: "POST",
+              url: "{{ url_for('motor_forward') }}",
+              data: 'forward',
+              success: null
+            });
+        }
+
+        function motorReverse()
+        {    $.ajax({
+              type: "POST",
+              url: "{{ url_for('motor_reverse') }}",
+              data: 'forward',
+              success: null
+            });
+        }
+
         $(document).ready(function () {
           InitOverviewDataTable();
           setTimeout(function(){AutoReload();}, 60000);

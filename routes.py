@@ -1,12 +1,16 @@
 from flask import Flask, render_template, flash, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import sys
+import time
+import zmq
 
 app = Flask(__name__) 
 app.config.from_pyfile('webHomeControl.cfg')
 # set the secret key.  keep this really secret:
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 db = SQLAlchemy(app)
+
 
 class Status(db.Model):
 	# Setting the table name and
@@ -94,6 +98,34 @@ def motionSensor_history():
         rowData.append([row.time, row.status])
 	aadata['aaData'] = rowData
     return jsonify(aadata)
+
+@app.route('/motor/forward', methods = ['POST'])
+def motor_forward():
+    port = "5556"
+    topic = "motor"
+    context = zmq.Context()
+    socket = context.socket(zmq.PUB)
+    socket.bind("tcp://*:{0}".format(port))
+    time.sleep(.5)
+    messagedata = 'forward'
+    print "{0} {1}".format(topic, messagedata)
+    socket.send("{0} {1}".format(topic, messagedata))
+    print "after socket"
+    return 'success' 
+
+@app.route('/motor/reverse', methods = ['POST'])
+def motor_reverse():
+    port = "5556"
+    topic = "motor"
+    context = zmq.Context()
+    socket = context.socket(zmq.PUB)
+    socket.bind("tcp://*:{0}".format(port))
+    time.sleep(.5)
+    messagedata = 'reverse'
+    print "{0} {1}".format(topic, messagedata)
+    socket.send("{0} {1}".format(topic, messagedata))
+    print "after socket"
+    return 'success' 
 
 if __name__ == '__main__':
   app.run(host='192.168.3.107', debug=True)
