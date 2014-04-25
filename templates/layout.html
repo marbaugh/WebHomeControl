@@ -4,11 +4,15 @@
     <title>Pi Home Control</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.mobile-1.4.2.css') }}">
     <script 
       type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.js') }}">
     </script>   
     <script 
       type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}">
+    </script>   
+    <script 
+      type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.mobile.js') }}">
     </script>   
     <script type="text/javascript">
         function InitOverviewDataTable() {
@@ -52,7 +56,7 @@
         {
           RefreshTable('#motionSensor', '{{ url_for('motionSensor_history') }}');
           RefreshTable('#doorSensor', '{{ url_for('doorSensor_history') }}');
-          setTimeout(function(){AutoReload();}, 60000);
+          setTimeout(function(){AutoReload();}, 5000);
         }
 
         function motorForward()
@@ -76,7 +80,7 @@
 
         $(document).ready(function () {
           InitOverviewDataTable();
-          setTimeout(function(){AutoReload();}, 60000);
+          setTimeout(function(){AutoReload();}, 5000);
         });
     </script>
   </head>
