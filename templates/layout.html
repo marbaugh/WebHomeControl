@@ -15,12 +15,16 @@
           motionTable = $('#motionSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('motionSensor_history') }}",
+            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+            "iDisplayLength": 5,
             "bSort": false
             });
 
           doorTable = $('#doorSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('doorSensor_history') }}",
+            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+            "iDisplayLength": 5,
             "bSort": false
             });
         }
