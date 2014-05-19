@@ -15,7 +15,7 @@
       type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/jquery.mobile.js') }}">
     </script>   
     <script type="text/javascript">
-        function InitOverviewDataTable() {
+        function InitDataTable() {
           motionTable = $('#motionSensor').dataTable( {
             "bProcessing": true,
             "sAjaxSource": "{{ url_for('motionSensor_history') }}",
@@ -52,11 +52,11 @@
           });
         }
 
-        function AutoReload()
+        function AutoReloadTable()
         {
           RefreshTable('#motionSensor', '{{ url_for('motionSensor_history') }}');
           RefreshTable('#doorSensor', '{{ url_for('doorSensor_history') }}');
-          setTimeout(function(){AutoReload();}, 5000);
+          setTimeout(function(){AutoReloadTable();}, 5000);
         }
 
         function motorForward()
@@ -79,8 +79,8 @@
         }
 
         $(document).ready(function () {
-          InitOverviewDataTable();
-          setTimeout(function(){AutoReload();}, 5000);
+          InitDataTable();
+          setTimeout(function(){AutoReloadTable();}, 5000);
         });
     </script>
   </head>
